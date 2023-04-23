@@ -1,0 +1,15 @@
+{
+    "KBHit":false,
+    "batchBindOnly":1,
+    "binFileName":"tanh_1587873293287421247_0",
+    "binFileSuffix":".o",
+    "blockDim":32,
+    "kernelName":"tanh_1587873293287421247_0__kernel0",
+    "magic":"RT_DEV_BINARY_MAGIC_ELF",
+    "opParaSize":0,
+    "parameters":[
+        0,
+        0
+    ],
+    "sha256":"f2b08567c81ab670526b712f6750399b1e7ab2c0b6ee26fdbf67eb89b8135bf3"
+}

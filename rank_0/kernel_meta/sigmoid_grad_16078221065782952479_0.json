@@ -1,0 +1,15 @@
+{
+    "batchBindOnly":1,
+    "binFileName":"sigmoid_grad_16078221065782952479_0",
+    "binFileSuffix":".o",
+    "blockDim":32,
+    "kernelName":"sigmoid_grad_16078221065782952479_0__kernel0",
+    "magic":"RT_DEV_BINARY_MAGIC_ELF",
+    "opParaSize":0,
+    "parameters":[
+        0,
+        0,
+        0
+    ],
+    "sha256":"4659dac0f380d114c075850abc277e3435839098ed33a8ce3a951d5299acfd43"
+}

@@ -1,0 +1,15 @@
+{
+    "KBHit":false,
+    "binFileName":"te_fusion_real_div_cast_5109768686154956220_0",
+    "binFileSuffix":".o",
+    "blockDim":40,
+    "kernelName":"te_fusion_real_div_cast_5109768686154956220_0__kernel0",
+    "magic":"RT_DEV_BINARY_MAGIC_ELF",
+    "opParaSize":0,
+    "parameters":[
+        0,
+        0,
+        0
+    ],
+    "sha256":"c40d5e1c90cbc709ce5d277962a9216632e9e2c6a7cfcdf89408fcc3f0d0e230"
+}

@@ -1,0 +1,401 @@
+{
+    "job_content": {
+        "SocInfo": {
+            "autoTilingMode": "NO_TUNE",
+            "coreNum": "",
+            "coreType": "AiCore",
+            "deviceId": "0",
+            "l1Fusion": "false",
+            "l2Fusion": "false",
+            "l2Mode": "2",
+            "mdl_bank_path": "",
+            "offlineTune": false,
+            "op_bank_path": "",
+            "op_bank_update": false,
+            "op_debug_dir": "./rank_0/",
+            "op_debug_level": "3",
+            "op_impl_mode": "",
+            "op_impl_mode_list": [],
+            "socVersion": "Ascend910A",
+            "vector_fp_ceiling": ""
+        },
+        "full_name": "Default/FusionOp_Sub_Square-op117168",
+        "fusion_op_name": "te_fusion_sub_square_2729210714994966187_0",
+        "graph_name": "",
+        "l1_size": -1,
+        "op_list": [
+            {
+                "name": "logits",
+                "output_desc": [
+                    {
+                        "L1_addr_offset": 0,
+                        "L1_fusion_type": -1,
+                        "L1_workspace_size": -1,
+                        "addr_type": 0,
+                        "data_type": "float32",
+                        "dtype": "float32",
+                        "format": "ND",
+                        "name": "logits",
+                        "ori_format": "NCHW",
+                        "ori_shape": [
+                            8,
+                            14,
+                            32,
+                            32,
+                            16
+                        ],
+                        "output_index": 0,
+                        "shape": [
+                            8,
+                            14,
+                            32,
+                            32,
+                            16
+                        ],
+                        "slice_offset": [],
+                        "split_index": 0,
+                        "total_shape": [],
+                        "valid_shape": []
+                    }
+                ],
+                "type": "Data"
+            },
+            {
+                "name": "labels",
+                "output_desc": [
+                    {
+                        "L1_addr_offset": 0,
+                        "L1_fusion_type": -1,
+                        "L1_workspace_size": -1,
+                        "addr_type": 0,
+                        "data_type": "float32",
+                        "dtype": "float32",
+                        "format": "ND",
+                        "name": "labels",
+                        "ori_format": "NCHW",
+                        "ori_shape": [
+                            8,
+                            14,
+                            32,
+                            32,
+                            16
+                        ],
+                        "output_index": 0,
+                        "shape": [
+                            8,
+                            14,
+                            32,
+                            32,
+                            16
+                        ],
+                        "slice_offset": [],
+                        "split_index": 0,
+                        "total_shape": [],
+                        "valid_shape": []
+                    }
+                ],
+                "type": "Data"
+            },
+            {
+                "dynamic_compile_static": false,
+                "func_name": "sub",
+                "input_desc": [
+                    {
+                        "L1_addr_offset": 0,
+                        "L1_fusion_type": -1,
+                        "L1_workspace_size": -1,
+                        "addr_type": 0,
+                        "data_type": "float32",
+                        "dtype": "float32",
+                        "format": "ND",
+                        "name": "logits",
+                        "ori_format": "NCHW",
+                        "ori_shape": [
+                            8,
+                            14,
+                            32,
+                            32,
+                            16
+                        ],
+                        "output_index": 0,
+                        "shape": [
+                            8,
+                            14,
+                            32,
+                            32,
+                            16
+                        ],
+                        "slice_offset": [],
+                        "split_index": 0,
+                        "total_shape": [],
+                        "valid_shape": []
+                    },
+                    {
+                        "L1_addr_offset": 0,
+                        "L1_fusion_type": -1,
+                        "L1_workspace_size": -1,
+                        "addr_type": 0,
+                        "data_type": "float32",
+                        "dtype": "float32",
+                        "format": "ND",
+                        "name": "labels",
+                        "ori_format": "NCHW",
+                        "ori_shape": [
+                            8,
+                            14,
+                            32,
+                            32,
+                            16
+                        ],
+                        "output_index": 0,
+                        "shape": [
+                            8,
+                            14,
+                            32,
+                            32,
+                            16
+                        ],
+                        "slice_offset": [],
+                        "split_index": 0,
+                        "total_shape": [],
+                        "valid_shape": []
+                    }
+                ],
+                "int64mode": false,
+                "is_dynamic_impl": false,
+                "module_name": "impl.sub",
+                "name": "Default/Sub-op117163",
+                "op_name": "te_fusion_sub_square_2729210714994966187_0",
+                "ori_name": [
+                    "Default/FusionOp_Sub_Square-op117168"
+                ],
+                "output_data_desc": [
+                    {
+                        "L1_addr_offset": 0,
+                        "L1_fusion_type": -1,
+                        "L1_workspace_size": -1,
+                        "addr_type": 0,
+                        "data_type": "float32",
+                        "dtype": "float32",
+                        "format": "ND",
+                        "ori_format": "NCHW",
+                        "ori_shape": [
+                            8,
+                            14,
+                            32,
+                            32,
+                            16
+                        ],
+                        "param_type": "required",
+                        "range": [
+                            [
+                                8,
+                                8
+                            ],
+                            [
+                                14,
+                                14
+                            ],
+                            [
+                                32,
+                                32
+                            ],
+                            [
+                                32,
+                                32
+                            ],
+                            [
+                                16,
+                                16
+                            ]
+                        ],
+                        "shape": [
+                            8,
+                            14,
+                            32,
+                            32,
+                            16
+                        ],
+                        "slice_offset": [],
+                        "split_index": 0,
+                        "total_shape": [],
+                        "valid_shape": []
+                    }
+                ],
+                "output_desc": [
+                    {
+                        "L1_addr_offset": 0,
+                        "L1_fusion_type": -1,
+                        "L1_workspace_size": -1,
+                        "addr_type": 0,
+                        "data_type": "float32",
+                        "dtype": "float32",
+                        "format": "ND",
+                        "name": "Default/Sub-op117163",
+                        "ori_format": "NCHW",
+                        "ori_shape": [
+                            8,
+                            14,
+                            32,
+                            32,
+                            16
+                        ],
+                        "output_index": 0,
+                        "shape": [
+                            8,
+                            14,
+                            32,
+                            32,
+                            16
+                        ],
+                        "slice_offset": [],
+                        "split_index": 0,
+                        "total_shape": [],
+                        "valid_shape": []
+                    }
+                ],
+                "pattern": "ElemWise",
+                "py_module_path": "/usr/local/Ascend/opp/op_impl/built-in/ai_core/tbe",
+                "type": "Sub",
+                "unknown_shape": false
+            },
+            {
+                "dynamic_compile_static": false,
+                "func_name": "square",
+                "input_desc": [
+                    {
+                        "L1_addr_offset": 0,
+                        "L1_fusion_type": -1,
+                        "L1_workspace_size": -1,
+                        "addr_type": 0,
+                        "data_type": "float32",
+                        "dtype": "float32",
+                        "format": "ND",
+                        "name": "Default/Sub-op117163",
+                        "ori_format": "NCHW",
+                        "ori_shape": [
+                            8,
+                            14,
+                            32,
+                            32,
+                            16
+                        ],
+                        "output_index": 0,
+                        "shape": [
+                            8,
+                            14,
+                            32,
+                            32,
+                            16
+                        ],
+                        "slice_offset": [],
+                        "split_index": 0,
+                        "total_shape": [],
+                        "valid_shape": []
+                    }
+                ],
+                "int64mode": false,
+                "is_dynamic_impl": false,
+                "module_name": "impl.square",
+                "name": "Default/Square-op117164",
+                "op_name": "te_fusion_sub_square_2729210714994966187_0",
+                "ori_name": [
+                    "Default/FusionOp_Sub_Square-op117168"
+                ],
+                "output_data_desc": [
+                    {
+                        "L1_addr_offset": 0,
+                        "L1_fusion_type": -1,
+                        "L1_workspace_size": -1,
+                        "addr_type": 0,
+                        "data_type": "float32",
+                        "dtype": "float32",
+                        "format": "ND",
+                        "ori_format": "NCHW",
+                        "ori_shape": [
+                            8,
+                            14,
+                            32,
+                            32,
+                            16
+                        ],
+                        "param_type": "required",
+                        "range": [
+                            [
+                                8,
+                                8
+                            ],
+                            [
+                                14,
+                                14
+                            ],
+                            [
+                                32,
+                                32
+                            ],
+                            [
+                                32,
+                                32
+                            ],
+                            [
+                                16,
+                                16
+                            ]
+                        ],
+                        "shape": [
+                            8,
+                            14,
+                            32,
+                            32,
+                            16
+                        ],
+                        "slice_offset": [],
+                        "split_index": 0,
+                        "total_shape": [],
+                        "valid_shape": []
+                    }
+                ],
+                "output_desc": [
+                    {
+                        "L1_addr_offset": 0,
+                        "L1_fusion_type": -1,
+                        "L1_workspace_size": -1,
+                        "addr_type": 0,
+                        "data_type": "float32",
+                        "dtype": "float32",
+                        "format": "ND",
+                        "name": "Default/Square-op117164",
+                        "ori_format": "NCHW",
+                        "ori_shape": [
+                            8,
+                            14,
+                            32,
+                            32,
+                            16
+                        ],
+                        "output_index": 0,
+                        "shape": [
+                            8,
+                            14,
+                            32,
+                            32,
+                            16
+                        ],
+                        "slice_offset": [],
+                        "split_index": 0,
+                        "total_shape": [],
+                        "valid_shape": []
+                    }
+                ],
+                "pattern": "ElemWise",
+                "py_module_path": "/usr/local/Ascend/opp/op_impl/built-in/ai_core/tbe",
+                "type": "Square",
+                "unknown_shape": false
+            }
+        ],
+        "scope_id": 1
+    },
+    "job_id": 5123,
+    "job_type": "FusionOpCompile",
+    "source_id": 0
+}

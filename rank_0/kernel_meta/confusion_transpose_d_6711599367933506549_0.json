@@ -1,0 +1,13 @@
+{
+    "binFileName":"confusion_transpose_d_6711599367933506549_0",
+    "binFileSuffix":".o",
+    "blockDim":32,
+    "kernelName":"confusion_transpose_d_6711599367933506549_0__kernel0",
+    "magic":"RT_DEV_BINARY_MAGIC_ELF",
+    "opParaSize":0,
+    "parameters":[
+        0,
+        0
+    ],
+    "sha256":"8f28a11afca92e373d9e9ffba3d3fe42a044007343caec08a1e6c7c28731ebe7"
+}

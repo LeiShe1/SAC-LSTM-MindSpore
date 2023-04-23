@@ -1,0 +1,15 @@
+{
+    "batchBindOnly":1,
+    "binFileName":"tanh_grad_1429267062389718801_0",
+    "binFileSuffix":".o",
+    "blockDim":32,
+    "kernelName":"tanh_grad_1429267062389718801_0__kernel0",
+    "magic":"RT_DEV_BINARY_MAGIC_ELF",
+    "opParaSize":0,
+    "parameters":[
+        0,
+        0,
+        0
+    ],
+    "sha256":"d08fc1e2b9b0863a16318fdbc052fe22b5874e8beba87efc7b07e2010854e8d5"
+}

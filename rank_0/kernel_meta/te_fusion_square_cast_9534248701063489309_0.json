@@ -1,0 +1,14 @@
+{
+    "KBHit":false,
+    "binFileName":"te_fusion_square_cast_9534248701063489309_0",
+    "binFileSuffix":".o",
+    "blockDim":56,
+    "kernelName":"te_fusion_square_cast_9534248701063489309_0__kernel0",
+    "magic":"RT_DEV_BINARY_MAGIC_ELF",
+    "opParaSize":0,
+    "parameters":[
+        0,
+        0
+    ],
+    "sha256":"d0886c05f4e580939fb3af9086efb9a4eaa01da299a43e892ea1c46bf162b6ac"
+}
