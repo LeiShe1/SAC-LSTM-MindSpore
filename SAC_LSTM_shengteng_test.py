@@ -27,11 +27,11 @@ import mindspore as ms
 
 
 # -----------------------------------------------------------------------------
-parser = argparse.ArgumentParser(description='PyTorch video prediction model - PredRNN_Plus')
+parser = argparse.ArgumentParser(description='MindSpore video prediction model - SAC_LSTM')
 
 # training/test
 parser.add_argument('--is_training', type=int, default=0)
-parser.add_argument('--device', type=str, default='cuda')
+# parser.add_argument('--device', type=str, default='cuda')
 
 # data
 parser.add_argument('--is_parallel', type=bool, default=False)
@@ -47,8 +47,7 @@ parser.add_argument('--data_train_path', type=str, default="/home/ma-user/work/C
 parser.add_argument('--data_val_path', type=str, default="/home/ma-user/work/CIKM_dataset/validation2.txt")
 parser.add_argument('--data_test_path', type=str, default="/home/ma-user/work/CIKM_dataset/test_1024_modif.txt")
 # model
-parser.add_argument('--model_name', type=str, default='predrnn_plus')
-parser.add_argument('--model_name_torch', type=str, default='torch_predrnn_plus')
+parser.add_argument('--model_name', type=str, default='sac_lstm')
 parser.add_argument('--pretrained_model', type=str, default='')
 parser.add_argument('--num_hidden', type=str, default='128,64,64,64')
 parser.add_argument('--filter_size', type=int, default=5)
