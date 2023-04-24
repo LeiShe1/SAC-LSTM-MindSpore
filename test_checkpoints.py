@@ -9,8 +9,8 @@ import x2ms_adapter
 import x2ms_adapter.datasets as x2ms_datasets
 import x2ms_adapter.numpy as x2ms_np
 
-# context.set_context(mode=context.GRAPH_MODE, device_target='Ascend', device_id=0)
-context.set_context(mode=context.PYNATIVE_MODE, device_target='Ascend')
+context.set_context(mode=context.GRAPH_MODE, device_target='Ascend', device_id=0)
+# context.set_context(mode=context.PYNATIVE_MODE, device_target='Ascend')
 from ast import arg
 import os
 os.environ["CUDA_VISIBLE_DEVICES"] = "3"
@@ -28,11 +28,11 @@ import mindspore as ms
 
 
 # -----------------------------------------------------------------------------
-parser = argparse.ArgumentParser(description='PyTorch video prediction model - PredRNN_Plus')
+parser = argparse.ArgumentParser(description='MindSpore video prediction model - SAC_LSTM')
 
 # training/test
 parser.add_argument('--is_training', type=int, default=0)
-parser.add_argument('--device', type=str, default='cuda')
+# parser.add_argument('--device', type=str, default='cuda')
 
 # data
 parser.add_argument('--is_parallel', type=bool, default=False)
@@ -48,7 +48,7 @@ parser.add_argument('--data_train_path', type=str, default="/home/ma-user/work/C
 parser.add_argument('--data_val_path', type=str, default="/home/ma-user/work/CIKM_dataset/validation2.txt")
 parser.add_argument('--data_test_path', type=str, default="/home/shelei/cikm_data/debug_test.txt")
 # model
-parser.add_argument('--model_name', type=str, default='predrnn_plus')
+parser.add_argument('--model_name', type=str, default='sac_lstm')
 parser.add_argument('--pretrained_model', type=str, default='')
 parser.add_argument('--num_hidden', type=str, default='128,64,64,64')
 parser.add_argument('--filter_size', type=int, default=5)
@@ -203,7 +203,7 @@ def wrapper_train(model):
                 best_iter = itr
                 tolerate = 0
                 model.save()
-                mox.file.copy_parallel("./checkpoints/SAC_LSTM_shengteng", "s3://precipitation-nowcasting/IDA_LSTM-master-huawei_x2ms/checkpoints/SAC_LSTM_shengteng/")
+                mox.file.copy_parallel("./checkpoints/SAC_LSTM_shengteng", "s3://precipitation-nowcasting//SAC_LSTM_shengteng/")
             else:
                 tolerate = tolerate+1
 
