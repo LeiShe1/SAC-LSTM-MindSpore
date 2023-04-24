@@ -2,7 +2,6 @@
 
 import os
 from core.models import predict
-from core_torch.models import predict_torch
 from core.layers.Discriminator import Discriminatorr
 from x2ms_adapter.optimizers import optim_register
 import mindspore
@@ -11,7 +10,7 @@ import x2ms_adapter.nn as x2ms_nn
 import x2ms_adapter.nn_cell
 import x2ms_adapter.loss as loss_wrapper
 import mindspore as ms
-import torch
+
 
 class Model(mindspore.nn.Cell):
     def __init__(self, configs):
