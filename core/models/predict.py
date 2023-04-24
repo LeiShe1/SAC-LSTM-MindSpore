@@ -151,6 +151,99 @@ class PredRNN(nn.Cell):
 
         return next_frames
 
+class SAC_LSTM(nn.Cell):
+    def __init__(self, num_layers, num_hidden, configs):
+        super(SAC_LSTM, self).__init__()
+        self.configs = configs
+        self.frame_channel = configs.img_channel * configs.patch_size * configs.patch_size
+        wide_cell_list = []
+        self.num_hidden = [int(x) for x in x2ms_adapter.tensor_api.split(configs.num_hidden, ',')]
+        self.num_layers = len(self.num_hidden)
+        cell_list = []
+        width = configs.img_width // configs.patch_size
+        height = configs.img_width // configs.patch_size
+
+        self.gradient_highway = GHU(
+            self.num_hidden[0],
+            self.num_hidden[0],
+            height,
+            width,
+            self.configs.filter_size,
+            self.configs.stride,
+        )
+        for i in range(self.num_layers):
+            num_hidden_in = self.num_hidden[i - 1]
+            in_channel = self.frame_channel if i == 0 else num_hidden_in
+            cell_list.append(
+                CausalLSTMCell(in_channel, num_hidden_in, self.num_hidden[i], height,
+                                       width, configs.filter_size,
+                                       configs.stride,
+                                       configs.layer_norm
+                               )
+            )
+        self.cell_list = x2ms_nn.ModuleList(cell_list)
+        self.conv_last = x2ms_nn.Conv2d(num_hidden[num_layers - 1], self.frame_channel,
+                                   kernel_size=1, stride=1, padding=0, bias=False)
+
+    def construct(self, frames, mask_true, is_training=True):
+        # [batch, length, height, width, channel] -> [batch, length, channel, height, width]
+        frames = x2ms_adapter.tensor_api.contiguous(x2ms_adapter.tensor_api.permute(frames, 0, 1, 4, 2, 3))
+        mask_true = x2ms_adapter.tensor_api.contiguous(x2ms_adapter.tensor_api.permute(mask_true, 0, 1, 4, 2, 3))
+        
+        batch = frames.shape[0]
+        height = frames.shape[3]
+        width = frames.shape[4]
+
+        next_frames = []
+        h_t = []
+        c_t = []
+        h_t_wide = []
+        c_t_wide = []
+
+        for i in range(self.num_layers):
+            # zeros = torch.zeros([batch, self.num_hidden[i], height, width]).to(self.configs.device)
+            # num_hidden_in = self.deep_num_hidden[i-1]
+            zeros = mindspore.ops.zeros(
+                (batch, self.num_hidden[i], height, width), mindspore.float32)
+            h_t.append(zeros)
+            c_t.append(zeros)
+        memory = x2ms_adapter.zeros([batch, self.num_hidden[-1], height, width])
+
+        z_t = mindspore.ops.zeros((batch, self.num_hidden[0], height,
+                           width), mindspore.float32)
+
+        if is_training:
+            seq_length = self.configs.total_length
+        else:
+            seq_length = self.configs.test_total_length
+
+        for t in range(seq_length - 1):
+            x_gen = 0
+            if t < self.configs.input_length:
+                net = frames[:, t]
+            else:
+                net = mask_true[:, t - self.configs.input_length] * frames[:, t] + \
+                      (1 - mask_true[:, t - self.configs.input_length]) * x_gen
+                
+            h_t[0], c_t[0], memory = self.cell_list[0](net, h_t[0],c_t[0], memory)
+            z_t = self.gradient_highway(h_t[0], z_t)
+            h_t[1], c_t[1], memory = self.cell_list[1](z_t, h_t[1],c_t[1], memory)
+
+            for i in range(2, self.num_layers):
+
+                h_t[i], c_t[i], memory = self.cell_list[i](h_t[i - 1],
+                                                                h_t[i], c_t[i],
+                                                                memory)
+
+            x_gen = self.conv_last(h_t[self.num_layers - 1])
+            next_frames.append(x_gen)
+            
+        # [length, batch, channel, height, width] -> [batch, length, height, width, channel]
+        next_frames = x2ms_adapter.tensor_api.contiguous(x2ms_adapter.tensor_api.permute(x2ms_adapter.stack(next_frames, dim=0), 1, 0, 3, 4,
+                                                              2))
+        return next_frames    
+    
+    
 class PredRNN_Plus(nn.Cell):
     def __init__(self, num_layers, num_hidden, configs):
         super(PredRNN_Plus, self).__init__()
