@@ -26,17 +26,17 @@ import moxing as mox
 
 
 # -----------------------------------------------------------------------------
-parser = argparse.ArgumentParser(description='PyTorch video prediction model - PredRNN_Plus')
+parser = argparse.ArgumentParser(description='MindSpore video prediction model - SAC_LSTM')
 
 # training/test
 parser.add_argument('--is_training', type=int, default=1)
-parser.add_argument('--device', type=str, default='cuda')
+# parser.add_argument('--device', type=str, default='cuda')
 
 # data
 parser.add_argument('--is_parallel', type=bool, default=False)
 parser.add_argument('--dataset_name', type=str, default='radar')
 parser.add_argument('--save_dir', type=str, default='checkpoints/SAC_LSTM_shengteng_32')
-parser.add_argument('--gen_frm_dir', type=str, default='/mnt/A/meteorological/2500_ref_seq/CIKM_predrnn_plus/')
+parser.add_argument('--gen_frm_dir', type=str, default='')
 parser.add_argument('--input_length', type=int, default=5)
 parser.add_argument('--total_length', type=int, default=15)
 parser.add_argument('--test_total_length', type=int, default=15)
@@ -46,7 +46,7 @@ parser.add_argument('--data_train_path', type=str, default="/home/ma-user/work/C
 parser.add_argument('--data_val_path', type=str, default="/home/ma-user/work/CIKM_Rardar_Data/validation2.txt")
 parser.add_argument('--data_test_path', type=str, default="/home/ma-user/work/CIKM_Rardar_Data/validation2.txt")
 # model
-parser.add_argument('--model_name', type=str, default='predrnn_plus')
+parser.add_argument('--model_name', type=str, default='sac_lstm')
 parser.add_argument('--pretrained_model', type=str, default='')
 parser.add_argument('--num_hidden', type=str, default='128,64,64,64')
 parser.add_argument('--filter_size', type=int, default=5)
@@ -322,10 +322,10 @@ if not os.path.exists(args.save_dir):
 #     shutil.rmtree(args.gen_frm_dir)
 # os.makedirs(args.gen_frm_dir)
 
-mox.file.copy_parallel('s3://precipitation-nowcasting/CIKM_Rardar_Data', '/cache')
+# mox.file.copy_parallel('s3://precipitation-nowcasting/CIKM_Rardar_Data', '/cache')
 
-train_dataset = r"/cache/train2.txt"
-valid_dataset = r"/cache/validation2.txt"
+# train_dataset = r"/cache/train2.txt"
+# valid_dataset = r"/cache/validation2.txt"
 
 gpu_list = np.asarray(x2ms_adapter.tensor_api.split(os.environ.get('CUDA_VISIBLE_DEVICES', '-1'), ','), dtype=np.int32)
 args.n_gpu = len(gpu_list)
